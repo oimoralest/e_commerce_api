@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authJwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
+const port = process.env.PORT || 8000;
 
 // Creates app
 const app = express();
@@ -55,6 +56,6 @@ mongoose
 	});
 
 // Creates the server
-app.listen(8080, () => {
+app.listen(port, () => {
 	console.log(`API is running http://localhost:8080${api}`);
 });
