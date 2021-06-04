@@ -1,0 +1,18 @@
+include head
+div(class="container")
+    h1(id="welcome") Welcome to the Ecommerce API
+    div
+        p(id="note")
+            | To use the available endpoints you must to register using the endpoint 
+            = ` https://${host}:${port}${api}/users/register `
+            | with a 
+            b POST 
+            | request and next you must to login using the endpoint 
+            = `https://${host}:${port}/users/login `
+            | with a 
+            b POST 
+            | request, this will give you a token to send in your http headers as 
+            b Authorization: Bearer token
+    div
+        h1(id="title") Available endpoints
+include footer

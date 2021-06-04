@@ -12,13 +12,13 @@ All the dependencies are listed in the [package.json](package.json) file
 
 ## Usage
 
-You can use the deployed version [here](https://ecommerceapiexpress.herokuapp.com/) and directly make use of the [Available endpoints](#available-endpoints) or clone the repository and make use of this project locally (See: [Installation](#installation))
+You can use the deployed version [here](https://ecommerceapiexpress.herokuapp.com/) and directly make use of the Available endpoints or clone the repository and make use of this project locally (See: [Installation](#installation))
 
 ### Installation
 
 First at all, you will need to clone this repo. You can use your favorite CLI, just type the following command:
 
-    git clone https://github.com/oimoralest/e_commerce_api.git && cd e_commerce_api
+    git clone https://github.com/oimoralest/e_commerce_api.git --depth 1 && cd e_commerce_api
 
 To install all the dependencias just type:
 
@@ -30,12 +30,14 @@ You have to create following environment variables in a .env file:
 - SECRET = A super secret to generate the tokens
 - CONNECTION_STRING = URI to your database on Atlas MongoDB (e.g. CONNECTION_STRING = mongodb+srv://**user**:**password**@cluster0.ens7j.mongodb.net/**database_name**?retryWrites=true&w=majority)
 
+### Running the app
+
+To run the app just type:
+
+    npm start
+
 ### Available endpoints
 
-#### Register an user
+Available endpoints are listed in the home page:
 
-To use all the available endpoints, you must to sign up using the following enpoint:
-
-- /api/v1/users/register
-
-... More available soon
+<http://localhost:8000/> or <https://ecommerceapiexpress.herokuapp.com/>

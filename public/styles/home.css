@@ -1,0 +1,46 @@
+@font-face {
+	font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 400;
+	src: url('/fonts/FiraCode-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 700;
+	src: url('/fonts/FiraCode-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Fira Code';
+    font-style: italic;
+	src: url('/fonts/FiraCode-VF.woff') format('woff');
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+	flex-flow: column nowrap;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.01);
+	font-family: 'Fira Code';
+	font-size: 90%;
+}
+
+.container {
+	height: calc(100% - 120px);
+	margin-top: 20px;
+	width: 80%;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.container > * {
+	margin-left: 20px;
+	margin-right: 20px;
+}

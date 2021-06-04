@@ -4,27 +4,40 @@ const api = process.env.API_URL;
 
 // Importing
 const express = require('express');
-const {json} = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authJwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
+const helmet = require('helmet');
+const https = require('https');
+const fs = require('fs');
+
+// CONSTANTS
 const port = process.env.PORT || 8000;
+const host = process.env.HOST || '0.0.0.0'
 
 // Creates app
 const app = express();
+
+// Protecting the app
+app.use(helmet());
 
 // Enables CORS
 app.use(cors());
 app.options('*', cors());
 
 // Middleware
-app.use(json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 app.use(authJwt());
-app.use('/public/uploads', express.static(__dirname + '/public/uploads'))
+app.use(express.static('public'));
 app.use(errorHandler);
+
+// Setting views
+app.set('views', process.cwd() + '/views');
+app.set('view engine', 'pug');
 
 // Routes
 const productsRouter = require('./routes/products');
@@ -37,8 +50,12 @@ app.use(`${api}/users`, usersRouter);
 app.use(`${api}/orders`, ordersRouter);
 
 // home page
-app.get(`${api}/`, (req, res) => {
-	res.send('Welcome to the API');
+app.get('/', (req, res) => {
+	res.render('home', {
+		host: host,
+		port: port,
+		api: api,
+	});
 });
 
 // Connects to mongo cloud
@@ -56,6 +73,13 @@ mongoose
 	});
 
 // Creates the server
-app.listen(port, () => {
-	console.log(`API is running http://localhost:8080${api}`);
+httpsServer = https.createServer(
+	{
+		key: fs.readFileSync('apache-selfsigned.key'),
+		cert: fs.readFileSync('apache-selfsigned.crt'),
+	},
+	app
+);
+httpsServer.listen(port, host , () => {
+	console.log(`API is running https://${host}:${port}${api}`);
 });

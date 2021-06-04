@@ -9,11 +9,14 @@ function authJwt() {
 		isRevoked: isRevoked,
 	}).unless({
 		path: [
-			{url: RegExp(`${api}/public/uploads/*`), methods: ['GET', 'OPTIONS']},
-			{url: RegExp(`${api}/products/*`), methods: ['GET', 'OPTIONS']},
-			{url: RegExp(`${api}/categories/*`), methods: ['GET', 'OPTIONS']},
+			{ url: RegExp(`/styles/*`), methods: ['GET', 'OPTIONS'] },
+			{ url: RegExp(`/uploads/*`), methods: ['GET', 'OPTIONS'] },
+			{ url: RegExp(`/fonts/*`), methods: ['GET', 'OPTIONS'] },
+			{ url: RegExp(`${api}/products/*`), methods: ['GET', 'OPTIONS'] },
+			{ url: RegExp(`${api}/categories/*`), methods: ['GET', 'OPTIONS'] },
 			`${api}/users/login`,
 			`${api}/users/register`,
+			`/`,
 		],
 	});
 }
